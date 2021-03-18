@@ -1,5 +1,7 @@
 package ro.ase.cts.seminar2;
 
+
+
 public abstract class BankAccount extends Account{
 	protected double balance;
 	protected String iban;
