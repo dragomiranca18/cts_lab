@@ -25,10 +25,15 @@ public class Main {
 		}
 	}
 	
-	myProduct=productFactory.makeProduct();
+	System.out.println(productFactory.getCatalog());
+	userPreferences=scan.nextLine();
+	try {
+		int selectedID = Integer.valueOf(userPreferences);
+		myProduct = productFactory.makeProduct(selectedID);
+	} catch (NumberFormatException e) {
+		System.err.println("Selectie invalida");
+	}
 	
-
-
 	if(myProduct!=null) {
 		myShoppingCart.products.add(myProduct);
 	}
