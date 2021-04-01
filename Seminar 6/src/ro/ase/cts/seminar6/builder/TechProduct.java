@@ -1,7 +1,8 @@
-package ro.ase.cts.seminar5.factory;
+package ro.ase.cts.seminar6.builder;
 
 public class TechProduct implements Product{
 
+	int id;
 	String productName;
 	String manufacturer;
 	String model;
@@ -22,4 +23,5 @@ public class TechProduct implements Product{
 		return "this is a tech product";
 	}
 
+	
 }
