@@ -12,60 +12,62 @@ public class TechProductFactory extends AbstractProductFactory{
 
 	@Override
 	public Product makeProduct(int id) throws UnsupportedOperationException {
-		ArrayList<String> records=readRecordsFromFile("tech_products.csv");
-		for(String record:records) {
-			String[] productAttributes=record.split(",");
-			if(Integer.valueOf(productAttributes[0])==id) 
-			{
-				TechProduct.TechProductBuilder productBuilder=new TechProduct.TechProductBuilder(id);
-				return productBuilder.setName(productAttributes[1])
-				.setModel(productAttributes[3])
-				.setManufacturer(productAttributes[2])
-				.setPrice(Float.valueOf(productAttributes[5]))
-				.getProduct();
-			}else
-			{
-				return new TechProduct.TechProductBuilder(id).getProduct();
+		ArrayList<String> records = readRecordsFromFile("tech_products.csv");
+		for (String record : records) {
+			String[] productArrtributes = record.split(",");
+			if (Integer.valueOf(productArrtributes[0]) == id) {
+				TechProduct.TechProductBuilder productBuilder = new TechProduct.TechProductBuilder(id);
+				return productBuilder.setName(productArrtributes[1]).setManufacturer(productArrtributes[2])
+						.setModel(productArrtributes[3]).setPrice(Float.valueOf(productArrtributes[5])).getProduct();
 			}
 		}
 		return new TechProduct.TechProductBuilder(id).getProduct();
+
 	}
 
 	@Override
 	public String getCatalog() {
-		ArrayList<String>records=readRecordsFromFile("tech_products.csv");
-		StringBuilder builder=new StringBuilder();
+		ArrayList<String> records=readRecordsFromFile("tech_products.csv");
+		StringBuilder builder= new StringBuilder();
 		for(String record:records) {
-			String[] productAttributes=record.split(",");
-			builder.append(productAttributes[0] + " - ");
-			builder.append(productAttributes[1]+ "  ")
-			.append(productAttributes[2]+" ")
-			.append(productAttributes[3]+ "\n");
+			String[] productArrtributes=record.split(",");
+			builder.append(productArrtributes[0]+ " - ");
+			builder.append(productArrtributes[1]+" - ")
+			.append(productArrtributes[2]+" ")
+			.append(productArrtributes[3]+"\n");
 		}
 		return builder.toString();
 	}
-
+	
 	private ArrayList<String> readRecordsFromFile(String fileName){
-		ArrayList<String> records= new ArrayList<>();
+		ArrayList<String> records=new ArrayList<String>();
+		System.out.println("Reading product records...");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		
-		
-		URL fileURL=getClass().getResource(fileName);
-		File productsFile=new File(fileURL.getPath());
+		URL fileUrl=getClass().getResource(fileName);
+		File productsFile=new File("C:\\Users\\Anca Maria\\eclipse-workspace\\cts_lab\\Seminar 6\\src\\ro\\ase\\cts\\seminar6\\builder\\" + fileName);
 		try {
 			BufferedReader reader=new BufferedReader(new FileReader(productsFile));
 			String line;
-			while((line=reader.readLine())!=null) {
-				records.add(line);
+			try {
+				while((line=reader.readLine())!=null) {
+					records.add(line);
+				}
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		
+		System.out.println("Finished reading product");
 		return records;
 	}
+
 }
