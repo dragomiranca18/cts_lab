@@ -35,25 +35,26 @@ public class Main {
 			try {
 				int selectedId = Integer.valueOf(userPreferences);
 				if(myShoppingCart.products.isEmpty()) {
-					myProduct = productFactory.makeProduct(selectedId);
+					myProduct=productFactory.makeProduct(selectedId);
 				}
-				for (Product p : myShoppingCart.products) {
-					if (p instanceof TechProduct) {
-						TechProduct tempProduct = (TechProduct) p;
-
-						if (tempProduct.getId() == selectedId) {
-							try {
-								myProduct = (Product) tempProduct.clone();
-							} catch (CloneNotSupportedException e) {
-								e.printStackTrace();
-							}
-
-						} else {
-							myProduct = productFactory.makeProduct(selectedId);
+				for(Product p: myShoppingCart.products) {
+					if(p instanceof TechProduct)
+					{
+						TechProduct tempProduct=(TechProduct)p;
+					
+					if(tempProduct.getId()==selectedId) {
+						try {
+							myProduct=(Product) tempProduct.clone();
+						} catch (CloneNotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
+					}else {
+						myProduct=productFactory.makeProduct(selectedId);
+					}
 					}
 				}
-			
+				myProduct = productFactory.makeProduct(selectedId);
 			} catch (NumberFormatException e) {
 				System.err.println("Selectie invalida");
 			}
