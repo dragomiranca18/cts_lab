@@ -34,7 +34,7 @@ public class VideoDatabase {
 			if(id==video.getId()) {
 				StringBuilder videoDescriptionBuilder=new StringBuilder();
 				videoDescriptionBuilder.append(video.getTitle())
-										.append(" takes you")
+										.append(" takes you ")
 										.append(video.getDuration())
 										.append(" minutes to watch");
 				return videoDescriptionBuilder.toString();
