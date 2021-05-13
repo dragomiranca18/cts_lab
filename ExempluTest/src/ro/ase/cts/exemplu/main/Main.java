@@ -1,8 +1,9 @@
-package ro.ase.cts.exemplu.singleton;
+package ro.ase.cts.exemplu.main;
 
 import ro.ase.cts.exemplu.adapter.AdapterCont;
 import ro.ase.cts.exemplu.adapter.BankAccount;
 import ro.ase.cts.exemplu.factory.ContBancar;
+import ro.ase.cts.exemplu.singleton.SingleBanca;
 
 public class Main {
 
