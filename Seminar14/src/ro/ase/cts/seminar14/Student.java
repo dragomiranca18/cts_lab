@@ -1,7 +1,7 @@
 package ro.ase.cts.seminar14;
 
 
-public class Student {
+public class Student extends StudentAbstract {
 
 	/* constraints 
 	 * nume- [3-255] caractere
@@ -53,6 +53,7 @@ public class Student {
 		this.note = note;
 	}
 	
+	@Override
 	public float calculMedie() throws StudentExceptionWrongValue {
 		if(note==null) {
 			throw new StudentExceptionWrongValue("empty dataset - note");
